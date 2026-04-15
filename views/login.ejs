@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h1><%= title %></h1>
+      
+      <% if (error) { %>
+        <div class="alert alert-error" id="errorMessage"><%= error %></div>
+      <% } %>
+      
+      <% if (success) { %>
+        <div class="alert alert-success" id="successMessage"><%= success %></div>
+      <% } %>
+      
+      <form id="loginForm" action="/api/auth/login" method="POST">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input 
+            type="text" 
+            id="email" 
+            name="email" 
+            placeholder="Enter your email"
+            required
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="Enter your password"
+            required
+          >
+        </div>
+        
+        <button type="submit" id="loginBtn" class="btn btn-primary">Login</button>
+      </form>
+      
+      <div class="form-footer">
+        <p>Don't have an account? <a href="/signup" id="signupLink">Sign up here</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

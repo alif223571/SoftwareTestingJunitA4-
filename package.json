@@ -1,0 +1,37 @@
+{
+  "name": "selenium-testing-assignment",
+  "version": "1.0.0",
+  "description": "Node.js Authentication Application with Selenium Testing",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha 'tests/**/*.test.js' --timeout 10000 --exit",
+    "test:unit": "mocha 'tests/unit/**/*.test.js' --timeout 5000 --exit",
+    "test:integration": "mocha 'tests/integration/**/*.test.js' --timeout 10000 --exit",
+    "test:advanced": "mocha 'tests/integration/advanced.test.js' --timeout 15000 --exit"
+  },
+  "keywords": [
+    "selenium",
+    "testing",
+    "authentication",
+    "mocha",
+    "chai"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3"
+  },
+  "devDependencies": {
+    "chai": "^4.3.10",
+    "chromedriver": "^146.0.6",
+    "mocha": "^10.2.0",
+    "selenium-webdriver": "^4.16.0"
+  }
+}
