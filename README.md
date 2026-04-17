@@ -2,7 +2,7 @@
 
 A complete Node.js authentication application with comprehensive test automation using Selenium WebDriver, Mocha, Chai, and Page Object Model (POM).
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -10,9 +10,10 @@ A complete Node.js authentication application with comprehensive test automation
 - [Running the Application](#running-the-application)
 - [Running Tests](#running-tests)
 - [Test Coverage](#test-coverage)
+- [Jenkins CI/CD Pipeline](#jenkins-cicd-pipeline)
 - [Technologies Used](#technologies-used)
 
-## 🚀 Prerequisites
+## Prerequisites
 
 Before running this project, ensure you have the following installed:
 
@@ -21,7 +22,7 @@ Before running this project, ensure you have the following installed:
 - **Google Chrome** browser - [Download](https://www.google.com/chrome/)
 - **npm** (comes with Node.js)
 
-## 📦 Installation
+## Installation
 
 1. **Clone or navigate to the project directory:**
    ```bash
@@ -41,7 +42,7 @@ Before running this project, ensure you have the following installed:
    - The `.env` file is already configured with default settings
    - Update `MONGODB_URI` if your MongoDB runs on a different port
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 ST A#4/
@@ -79,7 +80,7 @@ ST A#4/
 └── README.md                       # This file
 ```
 
-## 🌐 Running the Application
+## Running the Application
 
 1. **Start the server:**
    ```bash
@@ -119,29 +120,29 @@ npm run test:integration
 npm run test:advanced
 ```
 
-## 📊 Test Coverage
+## Test Coverage
 
 ### Unit Tests (validation.test.js)
-- ✅ Email validation (7 tests)
+-  Email validation (7 tests)
   - Valid email formats
   - Missing @ symbol
   - Missing domain
   - Empty/null values
   - Subdomains and special characters
 
-- ✅ Password validation (7 tests)
+- Password validation (7 tests)
   - Valid passwords (>= 6 characters)
   - Short passwords (< 6 characters)
   - Empty/null values
   - Boundary testing (exactly 6 chars)
 
-- ✅ Username validation (8 tests)
+- Username validation (8 tests)
   - Valid usernames (>= 3 characters)
   - Short usernames (< 3 characters)
   - Empty/null values
   - Whitespace handling
 
-- ✅ Complete user data validation (5 tests)
+- Complete user data validation (5 tests)
   - Valid user data
   - Single field validation errors
   - Multiple field validation errors
@@ -149,14 +150,14 @@ npm run test:advanced
 **Total Unit Tests: 27**
 
 ### Integration Tests (auth.test.js)
-- ✅ Login scenarios (5 tests)
+- Login scenarios (5 tests)
   - Valid login with correct credentials
   - Wrong password for existing user
   - Non-existing user login
   - Empty form submission
   - Invalid email format
 
-- ✅ Signup scenarios (7 tests)
+- Signup scenarios (7 tests)
   - Valid registration
   - Missing fields validation
   - Short password rejection
@@ -168,29 +169,29 @@ npm run test:advanced
 **Total Integration Tests: 12**
 
 ### Advanced Tests (advanced.test.js)
-- ✅ Boundary testing (4 tests)
+- Boundary testing (4 tests)
   - Password exactly 6 characters
   - Password 5 characters (below boundary)
   - Username exactly 3 characters
   - Username 2 characters (below boundary)
 
-- ✅ Special characters input (3 tests)
+- Special characters input (3 tests)
   - Username with special characters
   - Email with special characters
   - Password with special characters
 
-- ✅ Random/invalid inputs (5 tests)
+- Random/invalid inputs (5 tests)
   - Extremely long username (150 chars)
   - Extremely long password (150 chars)
   - SQL injection in username
   - SQL injection in email
   - HTML tags in username (XSS attempt)
 
-- ✅ Rapid multiple submissions (2 tests)
+- Rapid multiple submissions (2 tests)
   - Multiple rapid signup submissions
   - Multiple rapid login attempts
 
-- ✅ Edge cases (6 tests)
+- Edge cases (6 tests)
   - Whitespace-only username
   - Whitespace-only email
   - Mixed case email addresses
@@ -202,7 +203,60 @@ npm run test:advanced
 
 ### **Grand Total: 59 Tests**
 
-## 🛠️ Technologies Used
+## Jenkins CI/CD Pipeline
+
+This project includes a complete Jenkins CI/CD pipeline configuration for automated testing and reporting.
+
+### Pipeline Features
+
+- **Automated Code Checkout** - Pulls latest code from Git repository
+- **Dependency Installation** - Installs all npm packages automatically
+- **Unit Test Execution** - Runs 27 validation tests
+- **Integration Test Execution** - Runs 32 UI/API tests with Selenium
+- **HTML Report Generation** - Generates Mochawesome test reports
+- **Workspace Cleanup** - Automatic cleanup after build
+
+### Quick Start with Jenkins
+
+1. **Install Required Plugins:**
+   - NodeJS Plugin
+   - Git Plugin
+   - HTML Publisher Plugin
+
+2. **Configure Node.js:**
+   - Go to Manage Jenkins → Global Tool Configuration
+   - Add NodeJS 18+ with name `NodeJS-18`
+
+3. **Create Pipeline:**
+   - New Item → Pipeline → Pipeline script from SCM
+   - Select Git and enter repository URL
+   - Script Path: `Jenkinsfile`
+
+4. **Run Pipeline:**
+   - Click **Build Now**
+   - Monitor progress in Console Output
+   - View reports via **Test Report** link
+
+### Pipeline Stages
+
+| Stage | Description | Tests |
+|-------|-------------|-------|
+| Checkout Code | Pulls code from Git | - |
+| Install Dependencies | Runs npm install | - |
+| Run Unit Tests | Executes validation tests | 27 tests |
+| Run Integration Tests | Executes UI/API tests | 32 tests |
+| Generate Reports | Publishes HTML reports | - |
+
+### Test Reports
+
+After pipeline execution:
+- **HTML Report**: Available via "Test Report" link in Jenkins
+- **Location**: `mochawesome-report/mochawesome.html`
+- **Format**: Interactive HTML with test details, duration, and pass/fail status
+
+For detailed Jenkins setup instructions, see [JENKINS_SETUP.md](JENKINS_SETUP.md)
+
+## Technologies Used
 
 ### Backend
 - **Express.js** - Web application framework
@@ -221,12 +275,13 @@ npm run test:advanced
 - **Chai** - Assertion library
 - **Selenium WebDriver** - Browser automation
 - **ChromeDriver** - Chrome browser driver
+- **Mochawesome** - HTML test reporting
 
 ### Design Patterns
 - **Page Object Model (POM)** - Maintainable test automation
 - **MVC Architecture** - Model-View-Controller pattern
 
-## 🔐 API Endpoints
+## API Endpoints
 
 ### Authentication Routes
 
@@ -243,14 +298,14 @@ npm run test:advanced
 | GET | `/signup` | Signup page |
 | GET | `/dashboard` | Dashboard page |
 
-## 📝 Test Data
+## Test Data
 
 The test suite automatically generates random test data using timestamps to avoid conflicts:
 - Username: `testuser{timestamp}`
 - Email: `test{timestamp}@example.com`
 - Password: `password{timestamp}`
 
-## ⚙️ Configuration
+##  Configuration
 
 ### Environment Variables (.env)
 
@@ -261,7 +316,7 @@ JWT_SECRET=your-secret-key-here-change-in-production # JWT signing key
 NODE_ENV=development                         # Environment mode
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### MongoDB Connection Error
 - Ensure MongoDB service is running
@@ -278,7 +333,7 @@ NODE_ENV=development                         # Environment mode
 - Ensure application server is running before tests
 - Check network connectivity to localhost:3000
 
-## 📚 Additional Notes
+## Additional Notes
 
 - All tests run in headless Chrome mode for faster execution
 - Page Object Model ensures tests are maintainable and reusable
@@ -286,10 +341,10 @@ NODE_ENV=development                         # Environment mode
 - Passwords are securely hashed using bcrypt
 - JWT tokens used for authentication
 
-## 👨‍💻 Author
+##  Author
 
 Selenium Testing Assignment - Complete Implementation
 
-## 📄 License
+## License
 
 ISC
